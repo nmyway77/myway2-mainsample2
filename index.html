@@ -1,0 +1,175 @@
+ <!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>입체감 종이그림자 카드</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      background: #f9fafe;
+    }
+    /* ★ gallery4만 세로 잡지책(포스터) 느낌 */
+    #gallery4 .img-frame {
+      width: 120px;
+      height: 170px;
+    }
+    #gallery4 .img-frame img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    /* ★ 나머지 갤러리(뉴스/TV/쇼핑몰 등)는 네모 */
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 28px 12px;
+      max-width: 1050px;
+      margin: 60px auto 40px auto;
+      padding: 0 6px;
+      background: #fff;
+    }
+    .img-cell {
+      background: #fff;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      box-shadow: none;
+    }
+    .img-frame {
+      width: 150px;
+      height: 97px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0;
+      overflow: hidden;
+      border: none;
+      box-sizing: border-box;
+      margin-bottom: 0;
+      /* 잡지만 별도 */
+    }
+    .img-frame img {
+      width: 85%;
+      height: 85%;
+      object-fit: contain;
+      display: block;
+      margin: auto;
+      background: #fff;
+    }
+    .shadow-line {
+      width: 90%;
+      height: 12px;
+      margin: 0 0 6px 0;
+      display: block;
+      border-radius: 0;
+      opacity: 0.55;
+      pointer-events: none;
+      user-select: none;
+    }
+    @media (max-width: 900px) {
+      .img-grid { grid-template-columns: repeat(3, 1fr); }
+      .img-frame, #gallery4 .img-frame { width: 110px; height: 70px; }
+      #gallery4 .img-frame { width: 80px; height: 120px; }
+    }
+    @media (max-width: 600px) {
+      .img-grid { grid-template-columns: repeat(2, 1fr); }
+      .img-frame, #gallery4 .img-frame { width: 90px; height: 56px; }
+      #gallery4 .img-frame { width: 60px; height: 90px; }
+      .shadow-line { height: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 뉴스/포털 예시 -->
+  <div class="img-grid" id="gallery"></div>
+  <script>
+    const items = [
+      { url: "https://www.naver.com/", img: "https://i.namu.wiki/i/1O8gFnqPu8Qe37c5EwI7uzq0H5EsZN38Xgwdyz1e1CvQl8EqqUJqfihKv5OS_gbI5xkI1dKZ3LJ9vA-wg0gWgg.svg" },
+      { url: "https://duckduckgo.com/", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/DuckDuckGo_logo.svg/512px-DuckDuckGo_logo.svg.png" },
+      { url: "https://yandex.com/", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Yandex_logo_en.svg/2560px-Yandex_logo_en.svg.png" },
+      { url: "https://www.google.com/", img: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" },
+      { url: "https://www.bing.com/", img: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Microsoft_Bing_logo.svg" },
+      { url: "https://www.daum.net/", img: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Daum_logo.svg" }
+    ];
+    const shadowSrc = "https://64.media.tumblr.com/f5f06009df6584ebb5539cad61f73c63/tumblr_inline_qsghz3XZRQ1r45nlo_500.png";
+    const grid = document.getElementById("gallery");
+    grid.innerHTML = items.map(item => `
+      <div class="img-cell">
+        <a href="${item.url}" target="_blank" class="img-frame">
+          <img src="${item.img}" alt="">
+        </a>
+        <img class="shadow-line" src="${shadowSrc}" alt="">
+      </div>
+    `).join('');
+  </script>
+
+  <p style="text-align: center; margin-top:30px; font-size:1.3rem; font-weight:bold;">LIVE TV</p>
+  <div class="img-grid" id="gallery2"></div>
+  <script>
+    (function() {
+      const items2 = [
+        { url: "https://www.youtube.com/playlist?list=PLU12uITxBEPGpEPrYAxJvNDP6Ugx2jmUx", img: "https://64.media.tumblr.com/2e4c845ac1a46598a83b6872a85d986f/tumblr_inline_qr62newSap1r45nlo_500.jpg" },
+        { url: "https://www.wavve.com/live/index.html", img: "https://64.media.tumblr.com/2189d70a9d043e35abd0da0795368db1/tumblr_inline_qr9rdcj5Gw1r45nlo_500.jpg" },
+        { url: "https://www.afreecatv.com/", img: "https://64.media.tumblr.com/50e085a5c21801bcbf82f2a329b8d427/tumblr_inline_qr5ags5Pq51r45nlo_500.jpg" },
+        { url: "https://sportshub.stream/baseball-live-streamz/", img: "https://64.media.tumblr.com/7ab26e8bf532d3f67eddf68af156b0bd/tumblr_inline_riw5cynx2c1y2l0i6_500.jpg" },
+        { url: "https://tv.kakao.com/live", img: "https://64.media.tumblr.com/ad34a8a06c7f2a6d49d0eca6ab75307a/tumblr_inline_qr5al8LGBG1r45nlo_500.jpg" },
+        { url: "https://tv.naver.com/l/livehome", img: "https://64.media.tumblr.com/32bab5d7c4db1f90a078262949bc66aa/tumblr_inline_qr5achQfT31r45nlo_500.jpg" }
+      ];
+      const shadowSrc2 = "https://64.media.tumblr.com/f5f06009df6584ebb5539cad61f73c63/tumblr_inline_qsghz3XZRQ1r45nlo_500.png";
+      const grid2 = document.getElementById("gallery2");
+      if(grid2) grid2.innerHTML = items2.map(item =>
+        `<div class="img-cell">
+          <a href="${item.url}" target="_blank" class="img-frame">
+            <img src="${item.img}" alt="">
+          </a>
+          <img class="shadow-line" src="${shadowSrc2}" alt="">
+        </div>`
+      ).join('');
+    })();
+  </script>
+
+  <p style="text-align:center; margin:28px 0 12px 0; font-size:1.25rem; font-weight:bold;">◼ Shopping mall</p>
+  <div class="img-grid" id="gallery3"></div>
+  <script>
+    (function() {
+      const items3 = [
+        { url: "https://www.zdnet.co.kr/", img: "https://64.media.tumblr.com/4ff558094100970e37e242693d84cf85/tumblr_inline_njsdvjaJez1r45nlo.jpg" }
+      ];
+      const shadowSrc3 = "https://64.media.tumblr.com/f5f06009df6584ebb5539cad61f73c63/tumblr_inline_qsghz3XZRQ1r45nlo_500.png";
+      const grid3 = document.getElementById("gallery3");
+      if(grid3) grid3.innerHTML = items3.map(item =>
+        `<div class="img-cell">
+          <a href="${item.url}" target="_blank" class="img-frame">
+            <img src="${item.img}" alt="">
+          </a>
+          <img class="shadow-line" src="${shadowSrc3}" alt="">
+        </div>`
+      ).join('');
+    })();
+  </script>
+
+  <p style="text-align:center; margin:28px 0 12px 0; font-size:1.25rem; font-weight:bold;">◼ MagaZine</p>
+  <div class="img-grid" id="gallery4"></div>
+  <script>
+    (function() {
+      const items4 = [
+        { url: "https://www.nate.com/", img: "https://img주소.jpg" }
+      ];
+      const shadowSrc4 = "https://64.media.tumblr.com/f5f06009df6584ebb5539cad61f73c63/tumblr_inline_qsghz3XZRQ1r45nlo_500.png";
+      const grid4 = document.getElementById("gallery4");
+      if(grid4) grid4.innerHTML = items4.map(item =>
+        `<div class="img-cell">
+          <a href="${item.url}" target="_blank" class="img-frame">
+            <img src="${item.img}" alt="">
+          </a>
+          <img class="shadow-line" src="${shadowSrc4}" alt="">
+        </div>`
+      ).join('');
+    })();
+  </script>
+</body>
+</html>
